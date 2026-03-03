@@ -4,6 +4,7 @@ import AppSidebar from "./components/layout/Sidebar";
 import Budget from "./pages/Budget";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
+import CategoriesPage from "./features/Categories/CategoriesPage";
 
 function App() {
   return (
@@ -13,9 +14,9 @@ function App() {
           <AppSidebar />
           <main className="flex-1 bg-rose-50">
             <Routes>
+              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/budget" element={<Budget />} />
-              <Route path="/dashboard" element={<Dashboard/>} />
-
+              <Route path="/categories" element={<CategoriesPage />} />
             </Routes>
           </main>
         </div>
