@@ -21,8 +21,8 @@ function CategoryCard({ category, onDelete }) {
       )}
 
       {/* Icon */}
-      <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-pink-400 to-rose-500 flex items-center justify-center text-white font-bold text-lg mb-4">
-        {category.name.charAt(0)}
+      <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-pink-400 to-rose-500 flex items-center justify-center text-white text-2xl mb-4">
+        {category.icon ? category.icon : category.name.charAt(0)}
       </div>
 
       <h3 className="text-lg font-semibold text-gray-800 mb-4">

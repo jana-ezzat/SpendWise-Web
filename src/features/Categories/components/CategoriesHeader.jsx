@@ -1,8 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import AddCategoryDialog from "./AddCategoryDialog";
 
-function CategoriesHeader({ total }) {
+function CategoriesHeader({ total, onOpen }) {
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
@@ -15,7 +14,12 @@ function CategoriesHeader({ total }) {
           </p>
         </div>
 
-        <AddCategoryDialog />
+        <Button
+          onClick={onOpen}
+          className="bg-rose-500 hover:bg-rose-600 text-white rounded-lg px-4 py-2"
+        >
+          + Add Category
+        </Button>
       </div>
 
       {/* Stats Card */}

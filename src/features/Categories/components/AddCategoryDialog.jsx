@@ -1,33 +1,76 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import React, { useState } from "react";
 
-function AddCategoryDialog() {
+function AddCategoryDialog({ onClose, onAdd }) {
+  const [name, setName] = useState("");
+  const [selectedIcon, setSelectedIcon] = useState("");
+
+  const icons = ["🍔", "🚗", "🛍️", "🎬", "💡", "🏠", "💊", "📚"];
+
+  const handleAdd = () => {
+    if (!name || !selectedIcon) return;
+
+    const newCategory = {
+      id: Date.now(),
+      name,
+      icon: selectedIcon,
+    };
+
+    onAdd(newCategory);
+    onClose();
+  };
+
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button className="bg-gradient-to-r from-pink-400 to-rose-500 text-white hover:text-white">
-          + Add Category
-        </Button>
-      </DialogTrigger>
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+      <div className="bg-white w-[400px] rounded-2xl p-6 shadow-lg">
+        <h2 className="text-xl font-semibold mb-4">Add Category</h2>
 
-      <DialogContent className="sm:max-w-sm">
-        <DialogHeader>
-          <DialogTitle className="text-pink-900 font-bold text-xl">
-            Add Category
-          </DialogTitle>
-        </DialogHeader>
+        <div className="mb-4">
+          <label className="block text-sm mb-1">Category Name</label>
+          <input
+            type="text"
+            className="w-full border rounded-lg p-2 outline-none focus:ring-2 focus:ring-rose-400"
+            placeholder="Enter category name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
 
-        {/* فاضي لحد ما صاحبتك تعمل الفورم */}
-        <div className="h-32"></div>
-      </DialogContent>
-    </Dialog>
+        <div className="mb-6">
+          <label className="block text-sm mb-2">Choose Icon</label>
+          <div className="grid grid-cols-4 gap-3">
+            {icons.map((icon) => (
+              <button
+                key={icon}
+                onClick={() => setSelectedIcon(icon)}
+                className={`text-2xl p-2 rounded-lg border 
+                  ${selectedIcon === icon
+                    ? "bg-rose-100 border-rose-400"
+                    : "hover:bg-gray-100"
+                  }`}
+              >
+                {icon}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex justify-end gap-3">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 rounded-lg border hover:bg-gray-100"
+          >
+            Cancel
+          </button>
+
+          <button
+            onClick={handleAdd}
+            className="px-4 py-2 rounded-lg bg-rose-500 text-white hover:bg-rose-600"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 

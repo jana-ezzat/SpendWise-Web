@@ -1,23 +1,33 @@
 import React, { useState } from "react";
 import CategoriesHeader from "./components/CategoriesHeader";
 import CategoryCard from "./components/CategoryCard";
+import AddCategoryDialog from "./components/AddCategoryDialog";
 
 function CategoriesPage() {
   const [categories, setCategories] = useState([
-    { id: 1, name: "Food" },
-    { id: 2, name: "Transport" },
-    { id: 3, name: "Shopping" },
-    { id: 4, name: "Entertainment" },
-    { id: 5, name: "Bills" },
+    { id: 1, name: "Food", icon: "🍔" },
+    { id: 2, name: "Transport", icon: "🚗" },
+    { id: 3, name: "Shopping", icon: "🛍️" },
+    { id: 4, name: "Entertainment", icon: "🎬" },
+    { id: 5, name: "Bills", icon: "💡" },
   ]);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleDelete = (id) => {
     setCategories(categories.filter((cat) => cat.id !== id));
   };
 
+  const handleAddCategory = (newCategory) => {
+    setCategories([...categories, newCategory]);
+  };
+
   return (
     <div className="bg-rose-50 min-h-screen">
-      <CategoriesHeader total={categories.length} />
+      <CategoriesHeader
+        total={categories.length}
+        onOpen={() => setIsOpen(true)}
+      />
 
       <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {categories.map((category) => (
@@ -28,6 +38,13 @@ function CategoriesPage() {
           />
         ))}
       </div>
+
+      {isOpen && (
+        <AddCategoryDialog
+          onClose={() => setIsOpen(false)}
+          onAdd={handleAddCategory}
+        />
+      )}
     </div>
   );
 }
