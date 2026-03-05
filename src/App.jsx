@@ -4,7 +4,8 @@ import AppSidebar from "./components/layout/Sidebar";
 import Budget from "./pages/Budget";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
-import CategoriesPage from "./features/Categories/CategoriesPage";
+import CategoriesPage from "./pages/CategoriesPage";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/budget" element={<Budget />} />
               <Route path="/categories" element={<CategoriesPage />} />
+              <Route path="/settings" element={<Settings />} />
             </Routes>
           </main>
         </div>

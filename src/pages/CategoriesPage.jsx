@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import CategoriesHeader from "./components/CategoriesHeader";
-import CategoryCard from "./components/CategoryCard";
-import AddCategoryDialog from "./components/AddCategoryDialog";
+import CategoriesHeader from "../features/categories/CategoriesHeader";
+import CategoryCard from "../features/categories/CategoryCard";
+import AddCategoryDialog from "../features/categories/AddCategoryDialog";
 
 function CategoriesPage() {
   const [categories, setCategories] = useState([
