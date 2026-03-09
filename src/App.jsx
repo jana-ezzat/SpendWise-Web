@@ -16,6 +16,7 @@ function App() {
           <AppSidebar />
           <main className="flex-1 bg-rose-50">
             <Routes>
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/expenses" element={<Expenses />} />
               <Route path="/budget" element={<Budget />} />

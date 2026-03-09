@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -14,7 +13,7 @@ import {
   Grid2X2,
   Settings,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
@@ -24,11 +23,9 @@ const navItems = [
   { label: "Settings", icon: Settings, path: "/settings" },
 ];
 
-
-
 const AppSidebar = () => {
-  const [activeItem, setActiveItem] = useState("Budget");
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <Sidebar className="w-64 h-full bg-white border-none shadow-sm">
@@ -36,18 +33,17 @@ const AppSidebar = () => {
         <h1 className="text-xl font-bold text-rose-800">SpendWise</h1>
         <p className="text-sm text-rose-400 font-medium">Track your expenses</p>
       </SidebarHeader>
+
       <SidebarContent className="px-3">
         <SidebarMenu>
           {navItems.map((item) => {
             const Icon = item.icon;
-            const isActive = activeItem === item.label;
+            const isActive = location.pathname === item.path;
+
             return (
               <SidebarMenuItem key={item.label}>
                 <SidebarMenuButton
-                  onClick={() => {
-                    setActiveItem(item.label);
-                    navigate(item.path);
-                  }} 
+                  onClick={() => navigate(item.path)}
                   className={`flex items-center gap-4 w-full px-6 py-5.5 rounded-lg transition-all
                     ${
                       isActive
